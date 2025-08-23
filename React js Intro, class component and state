@@ -1,0 +1,26 @@
+***** Running JavaScript in HTML *****
+We can write and run javascript, React js  code directly in HTML using <script> tag.
+<script type="text/javascript" src="PATH_TO_JS_FILE"><script>
+FOR JAVASCRIPT : type="text/javascript" , src="index.js"
+<body>
+  <div id="root"></div>
+  <script type="text/javascript">
+    const rootElement = document.getElementById("root");
+    const element = document.createElement("h1");
+    element.textContent = "Hello World!";
+    element.classList.add("greeting");
+    rootElement.appendChild(element);
+  </script>
+</body>
+
+FOR REACT JS : type="module" , src="index.js"
+<body>
+  <div id="root"></div>
+  <script type="text/javascript">
+    const rootElement = document.getElementById("root");
+    const element = document.createElement("h1");
+    element.textContent = "Hello World!";
+    element.classList.add("greeting");
+    rootElement.appendChild(element);
+  </script>
+
