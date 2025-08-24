@@ -98,7 +98,7 @@ Embedded Expressions in jsx
   </script>
 </body> 
 
-Nesting JSx elements 
+-->Nesting JSx elements 
 Usually ReactDom.render() method returns only one element in render.So we need to wrap the element in paranthesis when writing multiple elements.
 <body>
   <script type="text/babel">
@@ -110,3 +110,116 @@ Usually ReactDom.render() method returns only one element in render.So we need t
     );
     ReactDOM.render(element, document.getElementById("root"));
   </script>
+
+--> React elemnent:
+cont welcome=<h1 className='message'>Hello, Rahul</h1>;
+Here welcome is react element.
+
+-->React Component: (function instead of element)
+cont Welcome= () => <h1 className='message'>Hello, Rahul</h1>;
+Here Welcome is react Component.It always starts with Capital letter otherwise, reacts treats it as HTML element.
+
+<script type="text/babel">
+  const Welcome = () => <h1 className="message">Hello, User</h1>;
+  ReactDOM.render(<Welcome />, document.getElementById("root"));
+</script>
+NOTE: This function should always call with self-closing tags i.e, <Welcome/>">
+
+
+--> We can pass the information to a component using props and access them too.
+
+1)passing props:
+
+const Welcome = () => <h1 className="message">Hello, User</h1>;
+
+ReactDOM.render(
+  <Welcome name="Rahul" greeting="Hello" />,
+  document.getElementById("root")
+);
+
+2)Accessing props:
+  
+const Welcome = (props) => {
+  const { name, greeting } = props;
+  return (
+    <h1 className="message">
+      {greeting}, {name}
+    </h1>
+  );
+};
+
+ReactDOM.render(
+  <Welcome name="Rahul" greeting="Hello" />,
+  document.getElementById("root")
+);
+
+3)component is reusable:
+
+const Welcome = (props) => {
+  const { name, greeting } = props;
+  return (
+    <h1 className="message">
+      {greeting}, {name}
+    </h1>
+  );
+};
+
+ReactDOM.render(
+  <div>
+    <Welcome name="Rahul" greeting="Hello" />
+    <Welcome name="Ram" greeting="Hi" />
+  </div>,
+  document.getElementById("root")
+);
+
+4)component is composable:
+
+const Welcome = (props) => {
+  const { name, greeting } = props;
+  return (
+    <h1 className="message">
+      {greeting}, {name}
+    </h1>
+  );
+};
+const Greetings = () => (
+  <div>
+    <Welcome name="Rahul" greeting="Hello" />
+    <Welcome name="Ram" greeting="Hi" />
+  </div>
+);
+
+ReactDOM.render(<Greetings />, document.getElementById("root"));
+
+***** Third party Packages *****
+
+--> create-react-app (created by facebook)
+
+when we install this package, all setup is ready for application.
+
+installation command:
+
+npm install -g create-react-app projectname 
+
+when above command runs, react appliaction folder created with projectname.
+That folder structure:
+1)public    -  HTML file present in this folder and we will keep assets like images, icons, videos <etc
+2)src       - all react components and like .js file .css file are present here.
+3)node_modules- This directory contains dependencies and sub-dependencies of packages used by the current react app, as specified by package.json.
+4)package-lock.json - This file contains the exact dependency tree installed in node_modules. This provides a way to ensure every team member have the same version of dependencies and sub-dependencies.
+
+--> How to start react application?
+command: npm start 
+You can view the application in the URL http://localhost:3000 in your browser.  
+
+NOTE: All the ES6 Modules should be named with .js extension.     
+
+-->Pre-Configured tools
+
+The create-react-app comes pre-configured with:
+
+Live editing: Allows React components to be live reloaded.
+ESLint: Analyzes source code to report programming errors, bugs, and syntax errors.
+Prettier: Enforces a consistent style for indentation, spacing, semicolons and quotes, etc.
+Babel: Compiles JSX into Regular JavaScript
+Webpack: Stitches together a group of modules into a single file (or group of files). This process is called Bundling.
