@@ -1,6 +1,8 @@
 ***** Running JavaScript in HTML *****
 We can write and run javascript, React js  code directly in HTML using <script> tag.
 <script type="text/javascript" src="PATH_TO_JS_FILE"><script>
+
+
 FOR JAVASCRIPT : type="text/javascript" , src="index.js"
 <body>
   <div id="root"></div>
@@ -13,14 +15,98 @@ FOR JAVASCRIPT : type="text/javascript" , src="index.js"
   </script>
 </body>
 
+
 FOR REACT JS : type="module" , src="index.js"
 <body>
   <div id="root"></div>
-  <script type="text/javascript">
-    const rootElement = document.getElementById("root");
-    const element = document.createElement("h1");
-    element.textContent = "Hello World!";
-    element.classList.add("greeting");
-    rootElement.appendChild(element);
-  </script>
+ <script type="module">
+  const elementProps = { className: "greeting", children: "Hello world!" };
+  const elementType = "h1";
+  const element = React.createElement(elementType, elementProps);
+</script>
 
+
+React CDN for linking react js in HTML.
+<script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+
+
+create Element.
+In JAvascript : document.createElement(type)
+In react js   : React.createElement(type, props)
+type - div, h1, p etc.
+props(propertoes): c;assName, onClick, id etc.
+<script type="module">
+  const elementProps = { className: "greeting", children: "Hello world!" };
+  const elementType = "h1";
+  const element = React.createElement(elementType, elementProps);
+</script>
+
+
+ReactDom.render() - used to diplay react element just like appendchild in javascript.
+syntax: ReactDom.render(reactElement, container);
+<body>
+  <div id="root"></div>
+  <script type="module">
+    const elementProps = { className: "greeting", children: "Hello world!" };
+    const elementType = "h1";
+    const element = React.createElement(elementType, elementProps);
+    ReactDOM.render(element, document.getElementById("root"));
+  </script>
+</body>
+
+
+***** JSX *****
+JSX is html like syntax introduced by js to create elements.
+const element = <h1 className="greeting">Hello World</h1>;
+
+The above code is JSX code which looks like JSX syntax which thwn compiles into js code.But JSx is not javascript so it needs code compiler,Babel is one such tool.
+Babel is a javascript compiler which compiles jsx to regular javascript. 
+<script type="text/babel">
+  const elementProps = { className: "greeting", children: "Hello world!" };
+  const element = React.createElement("h1", elementProps);
+  const element = <h1 className="greeting">Hello World</h1>;
+  ReactDOM.render(element, document.getElementById("root"));
+</script>
+
+      HTML       JSX
+      1)class   className 
+      2)for      htmlFor
+
+Embedded Variables in JSX 
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const name = "Rahul";
+    const className = "greeting";
+    const element = <h1 className="greeting">Hello World</h1>;
+    const element = <h1 className={className}>Hello {name}!</h1>;
+    ReactDOM.render(element, document.getElementById("root"));
+  </script>
+</body>
+
+Embedded Expressions in jsx 
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const name = "Rahul";
+    const className = "greeting";
+    const element = <h1 className="greeting">Hello World</h1>;
+    const element = <h1 className={className}>Hello {name}!</h1>;
+    ReactDOM.render(element, document.getElementById("root"));
+  </script>
+</body> 
+
+Nesting JSx elements 
+Usually ReactDom.render() method returns only one element in render.So we need to wrap the element in paranthesis when writing multiple elements.
+<body>
+  <script type="text/babel">
+    const element = (
+      <div>
+        <h1 className="greeting">Hello!</h1>
+        <p>Good to see you here.</p>
+      </div>
+    );
+    ReactDOM.render(element, document.getElementById("root"));
+  </script>
