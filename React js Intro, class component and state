@@ -109,4 +109,4 @@ Usually ReactDom.render() method returns only one element in render.So we need t
       </div>
     );
     ReactDOM.render(element, document.getElementById("root"));
-  </script>
+  
